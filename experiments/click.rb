@@ -1,5 +1,9 @@
-MIDI.using(@input, @output) do
-  BPM = 110
+require "midi"
+
+@output = UniMIDI::Output.use(:first)
+
+MIDI.using(@output) do
+  BPM = 1100
   PLAY_FOR = 0.02
 
   while true do
