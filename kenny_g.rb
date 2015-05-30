@@ -2,7 +2,7 @@ require "rubygems"
 require "bundler/setup"
 require "./lib/kenny_player"
 
-puts File.read("splash.txt")
+puts File.read("README.txt")
 
 chords = fetch_and_validate_chords
 
