@@ -1,0 +1,36 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    alsa-rawmidi (0.3.1)
+      ffi (~> 1.0)
+    ffi (1.9.8)
+    ffi-coremidi (0.3.7)
+      ffi (~> 1.9, >= 1.9.6)
+    micromidi (0.2.0)
+      midi-eye (~> 0.3, >= 0.3.7)
+      midi-fx (~> 0.4, >= 0.4)
+      midi-message (~> 0.4, >= 0.4.4)
+      unimidi (~> 0.4, >= 0.4.6)
+    midi-eye (0.3.9)
+      midi-message (~> 0.4, >= 0.4.4)
+      midi-nibbler (~> 0.2, >= 0.2.2)
+      unimidi (~> 0.4, >= 0.4.6)
+    midi-fx (0.4.2)
+      midi-message (~> 0.4, >= 0.4.4)
+    midi-jruby (0.1.5)
+    midi-message (0.4.9)
+    midi-nibbler (0.2.3)
+      midi-message (~> 0.4, >= 0.4.4)
+    midi-winmm (0.1.10)
+      ffi (>= 1.0)
+    unimidi (0.4.6)
+      alsa-rawmidi (~> 0.3, >= 0.3.1)
+      ffi-coremidi (~> 0.3, >= 0.3.5)
+      midi-jruby (~> 0.1, >= 0.1.4)
+      midi-winmm (~> 0.1, >= 0.1.10)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  micromidi (= 0.2.0)
