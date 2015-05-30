@@ -8,11 +8,11 @@ chords = fetch_and_validate_chords
 
 puts "OK, let's see what we can do with #{chords}..."
 
-numbers = convert_chords_to_numbers(chords)
+offsets = convert_chords_to_offsets(chords)
 
-puts "In numerical notation, that would be #{numbers}."
+puts "In offsets, that would be #{offsets}."
 
-phrases = numbers_to_phrases(numbers)
+phrases = offsets_to_phrases(offsets)
 
 puts "So, the phrases are #{phrases}."
 
@@ -41,20 +41,25 @@ BEGIN {
     true
   end
 
-  def convert_chords_to_numbers(chords)
+  def convert_chords_to_offsets(chords)
     chords_array = chords.split(" ")
-    root = chords_array.shift
-    numbers = chords_array.collect do |chord|
-      difference = chord.ord - root.ord
-      difference < 0 ? difference + 8 : difference + 1
+
+    the_notes = %w{C C# D D# E F F# G G# A A# B}
+    lots_of_notes = the_notes * 2
+
+    # Remove items off the beginning of lots_of_notes until we get to our first chord.
+    lots_of_notes.delete_if do |note|
+      break if note == chords[0]
+      true
     end
-    numbers.unshift 1 # always starts with the root
+
+    chords_array.collect { |chord| lots_of_notes.find_index(chord) }
   end
 
-  def numbers_to_phrases(numbers)
+  def offsets_to_phrases(offsets)
     phrases = []
-    numbers.each_with_index do |item, index|
-      phrases << { starting_note: item, interval: numbers[index + 1] - item } unless index >= numbers.length - 1
+    offsets.each_with_index do |item, index|
+      phrases << { starting_note: item, interval: offsets[index + 1] - item } unless index >= offsets.length - 1
     end
     phrases
   end
