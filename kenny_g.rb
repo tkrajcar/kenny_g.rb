@@ -54,7 +54,15 @@ BEGIN {
       true
     end
 
-    chords_array.collect { |chord| lots_of_notes.find_index(chord) }
+    chords_array.collect do |chord|
+      proposed_offset = lots_of_notes.find_index(chord)
+      if proposed_offset >= 8
+        proposed_offset -= 12
+      elsif proposed_offset <= -5
+        proposed_offset += 12
+      end
+      proposed_offset
+    end
   end
 
   def offsets_to_phrases(offsets)
