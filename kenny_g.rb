@@ -23,6 +23,7 @@ phrases.each do |phrase|
 end
 
 BEGIN {
+  THE_NOTES = %w{C C# D D# E F F# G G# A A# B}
   def fetch_and_validate_chords
     chords = ""
     until validate_chords(chords) do
@@ -36,7 +37,8 @@ BEGIN {
     chords_array = chords.split(" ")
     return false if chords_array.length != 4
     chords_array.each do |chord|
-      return false unless ("A".."G").include? chord
+
+      return false unless THE_NOTES.include? chord
     end
     true
   end
@@ -44,8 +46,7 @@ BEGIN {
   def convert_chords_to_offsets(chords)
     chords_array = chords.split(" ")
 
-    the_notes = %w{C C# D D# E F F# G G# A A# B}
-    lots_of_notes = the_notes * 2
+    lots_of_notes = THE_NOTES * 2
 
     # Remove items off the beginning of lots_of_notes until we get to our first chord.
     lots_of_notes.delete_if do |note|
