@@ -37,7 +37,6 @@ BEGIN {
     chords_array = chords.split(" ")
     return false if chords_array.length != 4
     chords_array.each do |chord|
-
       return false unless THE_NOTES.include? chord
     end
     true
@@ -54,22 +53,24 @@ BEGIN {
       true
     end
 
-    chords_array.collect do |chord|
-      proposed_offset = lots_of_notes.find_index(chord)
-      if proposed_offset >= 8
-        proposed_offset -= 12
-      elsif proposed_offset <= -5
-        proposed_offset += 12
-      end
-      proposed_offset
-    end
+    chords_array.collect { |chord| wrap_number lots_of_notes.find_index(chord) }
   end
 
   def offsets_to_phrases(offsets)
     phrases = []
     offsets.each_with_index do |item, index|
-      phrases << { starting_note: item, interval: offsets[index + 1] - item } unless index >= offsets.length - 1
+      phrases << { starting_note: item, interval: wrap_number(offsets[index + 1] - item) } unless index >= offsets.length - 1
     end
     phrases
+  end
+
+  def wrap_number(number)
+    if number >= 8
+      return number - 12
+    elsif number <= -5
+      return number + 12
+    else
+      return number
+    end
   end
 }
