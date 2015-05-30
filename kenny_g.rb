@@ -1,6 +1,6 @@
 require "rubygems"
 require "bundler/setup"
-require "midi"
+require "./lib/kenny_player"
 
 puts File.read("splash.txt")
 
@@ -11,6 +11,16 @@ puts "OK, let's see what we can do with #{chords}..."
 numbers = convert_chords_to_numbers(chords)
 
 puts "In numerical notation, that would be #{numbers}."
+
+phrases = numbers_to_phrases(numbers)
+
+puts "So, the phrases are #{phrases}."
+
+kenny = KennyPlayer.new(chords[0])
+
+phrases.each do |phrase|
+  kenny.play_sequence(phrase[:starting_note], phrase[:interval])
+end
 
 BEGIN {
   def fetch_and_validate_chords
@@ -39,5 +49,13 @@ BEGIN {
       difference < 0 ? difference + 8 : difference + 1
     end
     numbers.unshift 1 # always starts with the root
+  end
+
+  def numbers_to_phrases(numbers)
+    phrases = []
+    numbers.each_with_index do |item, index|
+      phrases << { starting_note: item, interval: numbers[index + 1] - item } unless index >= numbers.length - 1
+    end
+    phrases
   end
 }
