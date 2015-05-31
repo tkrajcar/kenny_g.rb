@@ -2,6 +2,7 @@ require "midi"
 require "json"
 
 @output = UniMIDI::Output.use(:first)
+
 MIDI.using(@output) do
   @notes = JSON.parse(File.read("output_good.json"))
   @offset = 0

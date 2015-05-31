@@ -1,10 +1,11 @@
 require "midi"
 require "json"
 
-# prompt the user to select an input and output
 @input = UniMIDI::Input.gets
 @output = UniMIDI::Output.use(:first)
+
 starting_time = Time.now
+
 MIDI.using(@input, @output) do
   @all_notes = []
   @current_notes = {}
@@ -12,6 +13,7 @@ MIDI.using(@input, @output) do
     @output = File.open("output.json", "w")
     @output.write @all_notes.to_json
   end
+
   receive(:note_on, :note_off) do |note|
     if note.velocity == 0
       mynote = @current_notes.delete note.note

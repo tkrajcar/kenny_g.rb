@@ -5,15 +5,12 @@ require "./lib/kenny_player"
 puts File.read("README.txt")
 
 chords = fetch_and_validate_chords
-
 puts "OK, let's see what we can do with #{chords}..."
 
 offsets = convert_chords_to_offsets(chords)
-
 puts "In offsets, that would be #{offsets}."
 
 phrases = offsets_to_phrases(offsets)
-
 puts "So, the phrases are #{phrases}."
 
 kenny = KennyPlayer.new(chords[0])
