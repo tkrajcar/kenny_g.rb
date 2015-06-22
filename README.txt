@@ -15,7 +15,7 @@
                          |___|_____|___|                  [ |   |  |\         /
                                                           | '   |  P :       ;
                    Smooth Jazz as a Service               | [   0   Q:  ( )  ;
-                                                           [ P  ( )  |;  ( ) ;
+                     powered by note.js                    [ P  ( )  |;  ( ) ;
        The world's best startup, as measured by volume     :Q  ( )  V        p
                                                             \   [           ;
    Enter four chords of pure unbridled inspiration...        \',     O    /
