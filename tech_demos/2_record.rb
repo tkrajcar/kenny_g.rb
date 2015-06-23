@@ -10,7 +10,7 @@ MIDI.using(@input, @output) do
   @all_notes = []
   @current_notes = {}
   at_exit do
-    @output = File.open("output.json", "w")
+    @output = File.open("sample.notejs", "w")
     @output.write @all_notes.to_json
   end
 

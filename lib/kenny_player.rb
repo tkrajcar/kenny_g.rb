@@ -17,7 +17,7 @@ class KennyPlayer
     key_offset = %w{C C# D D# E F F# G G# A A# B}.find_index(@key)
 
     MIDI.using(@midi_output) do
-      @notes = JSON.parse(File.read("patterns/#{interval}.json"))
+      @notes = JSON.parse(File.read("patterns/#{interval}.notejs"))
 
       @messages = @notes.flat_map do |note|
         [

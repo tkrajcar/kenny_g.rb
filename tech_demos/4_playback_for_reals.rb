@@ -4,7 +4,7 @@ require "json"
 @output = UniMIDI::Output.use(:first)
 
 MIDI.using(@output) do
-  @notes = JSON.parse(File.read("output_good.json"))
+  @notes = JSON.parse(File.read("sample.notejs"))
 
   @messages = @notes.flat_map do |note|
     [

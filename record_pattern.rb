@@ -19,7 +19,7 @@ MIDI.using(@input, @output) do
   @all_notes = []
   @current_notes = {}
   at_exit do
-    @output = File.open("patterns/#{offset}.json", "w")
+    @output = File.open("patterns/#{offset}.notejs", "w")
     @output.write @all_notes.to_json
   end
   receive(:note_on, :note_off) do |note|
